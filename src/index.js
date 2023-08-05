@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <div className='index-container'>
-      {length >= 8 ? (
+      {length >= 7 ? (
         <div className='index-container-8'>
           <Home todo={todo} updateTodo={updateTodo} />
         </div>
