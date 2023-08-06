@@ -27,9 +27,9 @@ const CreateTodo = ({ setTodo, todo }) => {
 
   const errorMessage =
     title.trim().length === 0
-      ? "Character limit exceed"
-      : title.length > 120
       ? "Enter task text"
+      : title.length > 120
+      ? "Character limit exceed"
       : "";
 
   return (
