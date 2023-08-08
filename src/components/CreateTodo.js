@@ -3,9 +3,15 @@ import { AiOutlineWarning } from "react-icons/ai";
 
 const CreateTodo = ({ setTodo, todo }) => {
   const [title, setTitle] = useState("");
+  const [attemptedAdd, setAttemptedAdd] = useState(false);
+
   const handleInputChange = (e) => {
     const inputText = e.target.value;
     setTitle(inputText);
+
+    if (attemptedAdd && inputText.trim().length > 0) {
+      setAttemptedAdd(false); 
+    }
   };
 
   const addTodo = () => {
@@ -19,17 +25,19 @@ const CreateTodo = ({ setTodo, todo }) => {
         ...todo,
       ]);
       setTitle("");
+      setAttemptedAdd(false);
+    } else {
+      setAttemptedAdd(true);
     }
   };
 
   const remainingCharacters = 120 - title.length;
 
-
   const errorMessage =
-    title.trim().length === 0
-      ? "Character limit exceed"
-      : title.length > 120
+    attemptedAdd && title.trim().length === 0
       ? "Enter task text"
+      : attemptedAdd && title.length > 120
+      ? "Character limit exceeded"
       : "";
 
   return (
